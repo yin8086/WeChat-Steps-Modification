@@ -1,11 +1,14 @@
 name: Run Your Python Script
 
-# on:
-#   push:
-#     branches:
-#       - main
-#   schedule:
-#     - cron: '6 10 * * *'  # 在UTC时间上午10点6分运行
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '6 2 * * *'  #  在北京时间上午10点6分运行(+8)
+    - cron: '6 6 * * *'  #  在北京时间上午14点6分运行(+8)
+    - cron: '6 10 * * *'  # 在北京时间上午18点6分运行(+8)
+    - cron: '6 13 * * *'  # 在北京时间上午21点6分运行(+8)
 
 on:
   workflow_dispatch:  # 手动触发
@@ -32,4 +35,9 @@ jobs:
         TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_API_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         ACCOUNTS_AND_PASSWORDS: ${{ secrets.ACCOUNTS_AND_PASSWORDS }}
+        CHANGE_STEP1: ${{ secrets.CHANGE_STEP1 }}
+        CHANGE_STEP2: ${{ secrets.CHANGE_STEP2 }}
+        CHANGE_STEP3: ${{ secrets.CHANGE_STEP3 }}
+        CHANGE_STEP4: ${{ secrets.CHANGE_STEP4 }}
+        TARGET_STEP:  ${{ secrets.TARGET_STEP }}
       run: python py.py # 根据你的脚本文件名修改这里

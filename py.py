@@ -2,9 +2,17 @@ import os
 import requests
 import base64
 import random
+from datetime import datetime, time, timezone
+
 
 telegram_api_token = os.environ.get('TELEGRAM_API_TOKEN')
 telegram_chat_id = os.environ.get('TELEGRAM_CHAT_ID')
+
+change_step1 = int(os.environ.get('CHANGE_STEP1'))
+change_step2 = int(os.environ.get('CHANGE_STEP2'))
+change_step3 = int(os.environ.get('CHANGE_STEP3'))
+change_step4 = int(os.environ.get('CHANGE_STEP4'))
+target_step = int(os.environ.get('TARGET_STEP'))
 
 # 检查 Telegram 相关信息是否存在
 if telegram_api_token is None or telegram_chat_id is None:
@@ -67,8 +75,25 @@ else:
         }
 
     if __name__ == "__main__":
-        min_steps = 50000
-        max_steps = 80000
+        # 获取当前时间，并转换为 UTC 时间
+        current_time_utc = datetime.now(timezone.utc)
+        current_time_t = current_time_utc.time()
+
+        if (current_time_t.hour == 2):
+            min_steps = change_step1 - 188
+            max_steps = change_step1 + 228
+        elif (current_time_t.hour == 6):
+            min_steps = change_step2 - 188
+            max_steps = change_step2 + 228
+        elif (current_time_t.hour == 10):
+            min_steps = change_step3 - 188
+            max_steps = change_step3 + 228
+        elif (current_time_t.hour == 10):
+            min_steps = change_step4 - 188
+            max_steps = change_step4 + 228
+        else:
+            min_steps = target_step - 16
+            max_steps = target_step + 22
 
         for account, password in account_password_pairs:
             result = modify_steps(account, password, min_steps, max_steps)
