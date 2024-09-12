@@ -16,10 +16,10 @@ target_step = int(os.environ.get('TARGET_STEP'))
 
 # 定义你想要的时区（比如，'Asia/Shanghai' 表示上海时间）
 timezone_name = 'Asia/Shanghai'
-timezone = pytz.timezone(timezone_name)
+timezone2 = pytz.timezone(timezone_name)
 
 # 获取当前时间并转换为指定时区的时间
-current_time_in_timezone = datetime.now(timezone)
+current_time_in_timezone = datetime.now(timezone2)
 
 # 获取星期几（0表示星期一，6表示星期日）
 weekday_number = current_time_in_timezone.weekday()
