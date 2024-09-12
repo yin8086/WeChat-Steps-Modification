@@ -1,9 +1,9 @@
 name: Run Your Python Script
 
 on:
-  push:
-    branches:
-      - main
+  #push:
+  #  branches:
+  #    - main
   schedule:
     - cron: '6 2 * * *'  #  在北京时间上午10点6分运行(+8)
     - cron: '6 6 * * *'  #  在北京时间上午14点6分运行(+8)
