@@ -118,4 +118,5 @@ else:
             hidden_account = account[:3] + '*' * (len(account) - 6) + account[-3:]
 
             print("账号:", hidden_account)
+            print("步数:", f"{min_steps}-{max_steps}")
             print("响应:", result['response'])
