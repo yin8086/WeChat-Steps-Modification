@@ -81,7 +81,8 @@ else:
                         #     'response': result.get('message', 'No message found in response')
                         # }
                         return {
-                            'account': account
+                            'account': account,
+                            'response': 'No message found in response'
                         }
                     else:
                         consecutive_failures += 1
