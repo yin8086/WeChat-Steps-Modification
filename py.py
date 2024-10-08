@@ -71,12 +71,17 @@ else:
                 try:
                     #response = requests.post(url, data=data, timeout=timeout)
                     response = requests.get(url, params=data, timeout=timeout)
-                    result = response.json()
 
-                    if result.get('message') == 'success':
+                    #result = response.json()
+                    #if result.get('message') == 'success':
+
+                    if response.text.find('success') >= 0:
+                        # return {
+                        #     'account': account,
+                        #     'response': result.get('message', 'No message found in response')
+                        # }
                         return {
-                            'account': account,
-                            'response': result.get('message', 'No message found in response')
+                            'account': account
                         }
                     else:
                         consecutive_failures += 1
